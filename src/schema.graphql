@@ -8,20 +8,43 @@ type Book {
   price: Int!
 }
 
+type Task {
+  id: Int!
+  title: String!
+  description: String!
+}
+
 type Query {
   index: String!
+  login(email: String!, password: String!): String!
   books: [Book!]!
   findBookById(bookId: Int!): Book
+  tasks: [Task!]!
+  taskById(taskId: Int!): Task!
 }
 
 type Mutation {
   deleteBook(bookId: Int!): String!
   addBook(addBookArgs: AddBookArgs!): String!
-  updateBook(bookId: Int!, addBookArgs: AddBookArgs!): String!
+  updateBook(bookId: Int!, updateBookArgs: AddBookArgs!): String!
+  deleteTask(taskId: Int!): String!
+  addTask(addTaskArgs: AddTaskArgs!): String!
+  updateTask(updateTaskArgs: UpdateTaskArgs!): String!
 }
 
 input AddBookArgs {
   id: Int!
   title: String!
   price: Int!
+}
+
+input AddTaskArgs {
+  title: String!
+  description: String!
+}
+
+input UpdateTaskArgs {
+  id: Int!
+  title: String!
+  description: String!
 }
